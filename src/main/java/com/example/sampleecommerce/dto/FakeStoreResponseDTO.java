@@ -1,17 +1,16 @@
-package com.example.sampleecommerce.model;
+package com.example.sampleecommerce.dto;
+
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-
-public class Product {
+public class FakeStoreResponseDTO {
     private Integer id;
     private String title;
     private String description;
-    private String imageURL;
-    private Category category;
+    private String image;
 
     public Integer getId() {
         return id;
@@ -29,12 +28,12 @@ public class Product {
         this.title = title;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getDescription() {
@@ -43,13 +42,5 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 }

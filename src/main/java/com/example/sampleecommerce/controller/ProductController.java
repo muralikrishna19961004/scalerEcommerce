@@ -1,14 +1,23 @@
 package com.example.sampleecommerce.controller;
 
+import com.example.sampleecommerce.Service.FakeStoreProductService;
+import com.example.sampleecommerce.model.Product;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 
 public class ProductController {
 
-    @GetMapping("/products/{id}")
-    public void getProductById(@PathVariable("id") Integer id) {
+    private FakeStoreProductService service;
 
+    public ProductController(FakeStoreProductService service) {
+        this.service = service;
+    }
+
+    @GetMapping("/products/{id}")
+    public Product getProductById(@PathVariable("id") Integer id) {
+        Product response = service.getProductById(id);
+        return response;
     }
 
     @PostMapping("/products")
@@ -16,7 +25,9 @@ public class ProductController {
 
     }
     @GetMapping("/products")
-    public void getAllProducts() {
+    public List<Product> getAllProducts() {
+
+        return service.getAllProducts();
 
     }
 
@@ -30,6 +41,5 @@ public class ProductController {
     public void deleteProductById(@PathVariable("id") Integer id) {
 
     }
-
 
 }
