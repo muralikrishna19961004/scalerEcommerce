@@ -56,8 +56,13 @@ public class FakeStoreProductService {
 
     public List<Product> getAllProducts() {
         List<Product> response = new ArrayList<>();
-        FakeStoreResponseDTO[] fakeStoreProducts =
-                restTemplate.getForObject("http://fakestoreapi.com/products", FakeStoreResponseDTO[].class);
+        ResponseEntity<FakeStoreResponseDTO[]> fakeStoreProducts =
+                restTemplate.getForEntity("http://fakestoreapi.com/products", FakeStoreResponseDTO[].class);
+        System.out.println("Status code: " + fakeStoreProducts.getStatusCode());
+        
+        for(FakeStoreResponseDTO fakeStoreDTO : fakeStoreProducts.getBody()) {
+            response.add(convertFakeStoreResponseToProduct(fakeStoreDTO));
+        }
         return response;
     }
 }
